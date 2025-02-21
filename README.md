@@ -21,7 +21,7 @@
 * Ethereum (Solidity)
 * MongoDB
 * RabbitMQ
-* Pix
+* API de Pagamento - Pix
 * JWT 
 * Redis
 * Angular
