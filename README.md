@@ -5,3 +5,15 @@
 <h2>Objetivo</h2>
 <p>O FaturaFlow permite que empresas que emitem faturas possam antecipar seus recebíveis, convertendo as faturas em dinheiro imediato. Os investidores, por sua vez, têm a oportunidade de financiar essas faturas, recebendo uma taxa de retorno atrativa.</p>
 
+<h2>Fucionalidades</h2>
+
+<p>A FaturaFlow contemplará<p>
+
+* Cadastro de Faturas: Empresas podem cadastrar suas faturas na plataforma.
+* Antecipação de Recebíveis: Empresas escolhem faturas para antecipar e recebem ofertas de investidores.
+* Investidores: Visualizam faturas disponíveis para compra, investindo diretamente nelas.
+* Processamento de Pagamentos: Pagamentos via Pix
+* Segurança: Blockchain para garantir transparência e registros imutáveis de transações.
+
+<h2>Stacks</h2>
+
