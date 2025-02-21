@@ -17,3 +17,11 @@
 
 <h2>Stacks</h2>
 
+* Java (Spring Boot)
+* Ethereum (Solidity)
+* MongoDB
+* RabbitMQ
+* Pix
+* JWT 
+* Redis
+* Angular
