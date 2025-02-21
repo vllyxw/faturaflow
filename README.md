@@ -17,9 +17,9 @@
 
 <h2>Stacks</h2>
 
-* Java (Spring Boot)
-* Ethereum (Solidity)
-* MongoDB
+* Java e Microserviços em Spring Boot
+* Ethereum - Solidity
+* MySQL e NoSQL
 * RabbitMQ
 * API de Pagamento - Pix
 * JWT 
