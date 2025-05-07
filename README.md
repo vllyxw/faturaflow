@@ -75,4 +75,4 @@
 <h1>C4 Model</h1>
 
 <h3>C1 - Diagrama de Contexto </h1>
-<img src="./faturaflow/assets/diagrama_contexto.png">
+<img src="./faturaflow/assets/contexto.jpeg" width="250">
