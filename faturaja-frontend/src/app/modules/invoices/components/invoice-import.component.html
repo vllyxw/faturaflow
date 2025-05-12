@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Import</title>
+</head>
+
+<body>
+    <div class="p-grid p-m-2">
+        <div class="p-col-12">
+            <p-card header="Importar Notas Fiscais">
+                <p-fileUpload name="files" [multiple]="true" accept=".xml" maxFileSize="1000000"
+                    (onUpload)="onUpload($event)" [auto]="true" [showUploadButton]="false" [showCancelButton]="false">
+                    <ng-template pTemplate="content">
+                        <ul *ngIf="uploadedFiles.length">
+                            <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                        </ul>
+                    </ng-template>
+                </p-fileUpload>
+
+                <p-progressSpinner *ngIf="loading"></p-progressSpinner>
+
+                <div class="p-mt-4">
+                    <p>Instruções:</p>
+                    <ul>
+                        <li>Selecione um ou mais arquivos XML de notas fiscais</li>
+                        <li>Os arquivos serão automaticamente enviados para validação</li>
+                        <li>Após a validação, as notas serão disponibilizadas para antecipação</li>
+                    </ul>
+                </div>
+            </p-card>
+        </div>
+    </div>
+
+    <p-toast></p-toast>
+</body>
+
+</html>

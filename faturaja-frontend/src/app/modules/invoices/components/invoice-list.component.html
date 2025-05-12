@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+</head>
+
+<body>
+    <div class="p-grid p-m-2">
+        <div class="p-col-12">
+            <p-card header="Notas Fiscais">
+                <div class="p-grid p-formgrid p-mb-4">
+                    <div class="p-field p-col-12 md:p-col-3">
+                        <label for="status">Status</label>
+                        <p-dropdown id="status" [options]="statuses" optionLabel="label" optionValue="value"
+                            [(ngModel)]="filter.status" (onChange)="onFilterChange()">
+                        </p-dropdown>
+                    </div>
+                    <div class="p-field p-col-12 md:p-col-3">
+                        <label for="type">Tipo</label>
+                        <p-dropdown id="type" [options]="types" optionLabel="label" optionValue="value"
+                            [(ngModel)]="filter.type" (onChange)="onFilterChange()">
+                        </p-dropdown>
+                    </div>
+                    <div class="p-field p-col-12 md:p-col-3">
+                        <label for="startDate">Data Início</label>
+                        <p-calendar id="startDate" [(ngModel)]="filter.startDate" (onSelect)="onFilterChange()"
+                            dateFormat="dd/mm/yy">
+                        </p-calendar>
+                    </div>
+                    <div class="p-field p-col-12 md:p-col-3">
+                        <label for="endDate">Data Fim</label>
+                        <p-calendar id="endDate" [(ngModel)]="filter.endDate" (onSelect)="onFilterChange()"
+                            dateFormat="dd/mm/yy">
+                        </p-calendar>
+                    </div>
+                </div>
+
+                <p-table [value]="invoices" [lazy]="true" [paginator]="true" [rows]="filter.size"
+                    [totalRecords]="totalRecords" [loading]="loading" (onLazyLoad)="loadInvoices($event)"
+                    [rowsPerPageOptions]="[10, 25, 50]">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Chave de Acesso</th>
+                            <th>Emitente</th>
+                            <th>Destinatário</th>
+                            <th>Valor</th>
+                            <th>Emissão</th>
+                            <th>Vencimento</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-invoice>
+                        <tr>
+                            <td>{{ invoice.accessKey }}</td>
+                            <td>{{ invoice.issuerName }}</td>
+                            <td>{{ invoice.recipientName }}</td>
+                            <td>{{ invoice.amount | currency:'BRL' }}</td>
+                            <td>{{ invoice.emissionDate | date:'dd/MM/yyyy' }}</td>
+                            <td>{{ invoice.dueDate | date:'dd/MM/yyyy' }}</td>
+                            <td>
+                                <p-tag [value]="invoice.status | statusTranslate"
+                                    [severity]="getStatusSeverity(invoice.status)">
+                                </p-tag>
+                            </td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-text"
+                                    [routerLink]="['/invoices', invoice.id]">
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </p-card>
+        </div>
+    </div>
+
+    <p-toast></p-toast>
+</body>
+
+</html>

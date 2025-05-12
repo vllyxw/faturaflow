@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="container">
+            <div class="logo">
+                <h1>Antecipação de Recebíveis</h1>
+            </div>
+
+            <nav class="main-nav">
+                <ul>
+                    <li><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
+                    <li><a routerLink="/invoices" routerLinkActive="active">Notas Fiscais</a></li>
+                    <li><a routerLink="/factoring" routerLinkActive="active">Antecipação</a></li>
+                    <li><a routerLink="/payments" routerLinkActive="active">Pagamentos</a></li>
+                    <li *ngIf="authService.isAdmin()">
+                        <a routerLink="/companies" routerLinkActive="active">Empresas</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="user-actions">
+                <span class="username">{{ authService.currentUser?.name }}</span>
+                <button pButton icon="pi pi-sign-out" (click)="logout()"></button>
+            </div>
+        </div>
+    </header>
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+/* Variáveis */
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --danger-color: #e74c3c;
+  --success-color: #2ecc71;
+  --warning-color: #f39c12;
+}
+
+/* Reset e estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Header */
+.app-header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem 0;
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .main-nav ul {
+    display: flex;
+    list-style: none;
+    
+    li {
+      margin-left: 1.5rem;
+      
+      a {
+        color: white;
+        text-decoration: none;
+        transition: opacity 0.3s;
+        
+        &:hover {
+          opacity: 0.8;
+        }
+        
+        &.active {
+          font-weight: bold;
+          border-bottom: 2px solid var(--secondary-color);
+        }
+      }
+    }
+  }
+}
+
+/* Cards */
+.p-card {
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  
+  .p-card-title {
+    color: var(--primary-color);
+  }
+}
+
+/* Botões */
+.p-button {
+  transition: all 0.3s;
+  
+  &.p-button-primary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    
+    &:hover {
+      background-color: darken(#3498db, 10%);
+      border-color: darken(#3498db, 10%);
+    }
+  }
+}
+
+/* Tabelas */
+.p-datatable {
+  .p-datatable-thead > tr > th {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .p-datatable-tbody > tr {
+    transition: background-color 0.3s;
+    
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+}
+
+/* Tags */
+.p-tag {
+  &.status-valid {
+    background-color: var(--success-color);
+  }
+  
+  &.status-invalid {
+    background-color: var(--danger-color);
+  }
+  
+  &.status-pending {
+    background-color: var(--warning-color);
+  }
+}
