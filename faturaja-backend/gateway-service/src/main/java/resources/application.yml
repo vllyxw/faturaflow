@@ -1,0 +1,62 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=2
+            - name: CircuitBreaker
+              args:
+                name: authCircuitBreaker
+                fallbackUri: forward:/fallback/auth
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+                redis-rate-limiter.requestedTokens: 1
+
+        - id: invoice-service
+          uri: lb://invoice-service
+          predicates:
+            - Path=/api/invoices/**
+          filters:
+            - StripPrefix=2
+            - name: CircuitBreaker
+              args:
+                name: invoiceCircuitBreaker
+                fallbackUri: forward:/fallback/invoice
+
+        # Configurações similares para os outros serviços...
+
+      default-filters:
+        - name: AuthenticationFilter
+        - name: LoggingFilter
+        - name: Retry
+          args:
+            retries: 3
+            series: SERVER_ERROR
+            methods: GET,POST
+            exceptions: java.io.IOException, org.springframework.cloud.gateway.support.TimeoutException
+
+  redis:
+    host: localhost
+    port: 6379
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+jwt:
+  secret: seuSegredoSuperSecretoParaJWTAqui
+  expiration: 86400000 # 24 horas em milissegundos
